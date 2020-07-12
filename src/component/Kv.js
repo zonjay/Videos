@@ -2,10 +2,28 @@ import React, { useEffect } from 'react';
 
 export default function Kv () {
     useEffect(() => {
-        onYouTubeIframeAPIReady();
+        const playYoutube = () => {
+            if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                createYouTubeScript();
+                window.onYouTubePlayerAPIReady = function() {
+                    onYouTubePlayer();
+                };
+            } else {
+                onYouTubePlayer();
+            }
+        }
+
+        playYoutube();
     }, [])
 
-    function onYouTubeIframeAPIReady () {
+    const createYouTubeScript = () => {
+        let tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        let firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    function onYouTubePlayer () {
         const player = new YT.Player('youTube-video-player', {
             videoId: 'or5A_ZzB6YI',          
             playerVars: {
