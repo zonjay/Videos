@@ -1,3 +1,10 @@
+$color_grey: #f3f3f1;
+$width_of_video: 320px;
+$padding_of_video: 15px;
+$height_of_cover: 180px;
+$height_of_desctiption: 135px;
+$color_dark_grey: #4F4C4B;
+
 @mixin size($w, $h) {
   width: $w;
   height: $h;
@@ -7,6 +14,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body, html {
+  background-color: $color_grey;
 }
 
 nav {
@@ -22,4 +33,63 @@ nav {
 iframe {
   pointer-events: none;
   @include size(100vw, 100vh);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+
+  & .video {
+    background-color: white;
+    width: $width_of_video;
+    padding: $padding_of_video;
+    border-radius: 5px;
+    box-shadow: 0px 0px 12px rgba(#000,0.2);
+    cursor: pointer;
+    color: $color_dark_grey;
+    text-decoration: none;
+    margin: 25px 15px;
+
+    &:hover {
+      & .cover {
+        transform: scale(1.15);
+      }
+    }
+
+    & .top {
+      height: $height_of_cover;
+      margin: -15px;
+      border-radius: 5px 5px 0px 0px;
+      overflow: hidden;
+
+      & .cover {
+        @include size(100%, 100%);
+        background-image: url('https://i.ytimg.com/vi/qpAF5I8crfY/mqdefault.jpg');
+        background-size: cover;
+        transition-duration: 0.3s
+      }
+    }
+
+    & .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: $height_of_desctiption;
+
+      & .title {
+        margin-top: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      & .info {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
 }
