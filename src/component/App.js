@@ -5,6 +5,7 @@ import '../dist/app.scss';
 import Header from './Header';
 import KV from './Kv';
 import VideoList from './VideoList';
+import Footer from './Footer';
 import { BASEURL, APIKEY } from '../constant';
 
 export default function App () {
@@ -47,6 +48,7 @@ export default function App () {
             <Header />
             <KV />
             <VideoList videos={videos} />
+            <Footer />
         </>
     )
 }
