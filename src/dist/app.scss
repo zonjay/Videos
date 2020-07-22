@@ -18,6 +18,7 @@ $color_dark_grey: #4F4C4B;
 
 body, html {
   background-color: $color_grey;
+  overflow-x: hidden;
 }
 
 nav {
