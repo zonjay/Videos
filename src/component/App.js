@@ -5,10 +5,9 @@ import '../dist/app.scss';
 import Header from './Header';
 import KV from './Kv';
 import VideoList from './VideoList';
+import { BASEURL, APIKEY } from '../constant';
 
 export default function App () {
-    const baseUrl = 'https://www.googleapis.com/youtube/v3';
-    const apiKey = 'AIzaSyD-oy7wW09Q_W3U14aM-OShgeoAOa_fNL8';
     const channelID = 'UC8tyyA-UIbefEexcLatHmUQ';
 
     const [videos, setVideos] = useState([]);
@@ -19,11 +18,11 @@ export default function App () {
 
     const getVideoData = async () => {
         /* 取得頻道資料 */
-        const channelData = await axios.get(`${baseUrl}/channels`, {
+        const channelData = await axios.get(`${BASEURL}/channels`, {
             params: {
                 part: 'contentDetails',
                 id: channelID,
-                key: apiKey
+                key: APIKEY
             }
         });
 
@@ -31,11 +30,11 @@ export default function App () {
         const playlistID = items.contentDetails.relatedPlaylists.uploads;
 
         /* 取得上傳的播放清單資料 */
-        const playListData = await axios.get(`${baseUrl}/playlistItems`, {
+        const playListData = await axios.get(`${BASEURL}/playlistItems`, {
             params: {
                 part: 'snippet,contentDetails',
                 playlistId: playlistID,
-                key: apiKey,
+                key: APIKEY,
                 maxResults: 20
             }
         });

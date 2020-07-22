@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASEURL, APIKEY } from '../constant';
 
 export default function Video ({ video }) {
     const {
@@ -9,8 +10,6 @@ export default function Video ({ video }) {
         thumbnails,
      } = video;
 
-    const baseUrl = 'https://www.googleapis.com/youtube/v3';
-    const apiKey = 'AIzaSyD-oy7wW09Q_W3U14aM-OShgeoAOa_fNL8';
     const videoId = resourceId.videoId;
     const [date] = publishedAt.split('T');
     const [viewCount, setViewCount] = useState(0);
@@ -18,11 +17,11 @@ export default function Video ({ video }) {
     useEffect(() => {
         const getVideoData = async () => {
             /* 取得頻道資料 */
-            const videoData = await axios.get(`${baseUrl}/videos`, {
+            const videoData = await axios.get(`${BASEURL}/videos`, {
                 params: {
                     part: 'statistics',
                     id: videoId,
-                    key: apiKey
+                    key: APIKEY
                 }
             });
 
