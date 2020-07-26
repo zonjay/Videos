@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 export default function Kv () {
     useEffect(() => {
@@ -47,5 +49,12 @@ export default function Kv () {
         });
     }
 
-    return <div id="youTube-video-player"></div>;
+    return (
+        <div id="kv">
+            <div id="youTube-video-player"></div>
+            <div className="bottom-arrow">
+                <FontAwesomeIcon icon={ faChevronDown } />
+            </div>
+        </div>
+    );
 }
