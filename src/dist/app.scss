@@ -66,6 +66,11 @@ nav {
     }
    }
 
+   @media screen and (max-width: 1024px) {
+    iframe {
+      @include size(100vw, 50vh);
+    }
+   }
 }
 
 
