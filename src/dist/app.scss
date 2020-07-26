@@ -147,3 +147,29 @@ footer {
       }
     }
 }
+
+.scroll-top-btn {
+  position: fixed;
+  right: 15px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #12399c;
+  border-radius: 50%;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
+  border: 0;
+  cursor: pointer;
+}
+
+.scroll-top-btn:focus {
+  outline: 0;
+}
+
+.scroll-top-btn:after {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  display: inline-block;
+  content: "TOP";
+  color: #fff;
+}
