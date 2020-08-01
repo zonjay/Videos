@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASEURL, APIKEY } from '../constant';
 
-export default function Video ({ video }) {
+export default function Video ({ video, onBookButtonClick }) {
     const {
         resourceId,
         title,
         publishedAt,
         thumbnails,
+        checked
      } = video;
 
     const videoId = resourceId.videoId;
@@ -30,11 +31,15 @@ export default function Video ({ video }) {
         }
 
         getVideoData();
+        video['checked'] = false;
     }, [videoId])
 
     return (
         <a className="video" target="_blank" href={`https://www.youtube.com/watch?v=${videoId}`}>
             <div className="top">
+                <div className="bookmark" onClick={onBookButtonClick}>
+                    {checked ? '取消收藏' : '加入收藏'}
+                 </div>
                 <div className="cover" style={{ backgroundImage: `url(${thumbnails.medium.url})` }}></div>
             </div>
             <div className="description">

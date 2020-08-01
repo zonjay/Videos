@@ -44,11 +44,25 @@ export default function App () {
         return playListData.data.items;
     }
 
+    const handleBookClick = (event, i) => {
+        event.preventDefault();
+        setVideos(videos.map((video, index) => {
+            if (i === index) {
+                video.snippet.checked = !video.snippet.checked;
+            };
+
+            return video;
+        }))
+    }
+
     return (
         <>
             <Header />
             <KV />
-            <VideoList videos={videos} />
+            <VideoList
+                videos={videos}
+                onBookButtonClick={(event, i) => handleBookClick(event, i)}
+            />
             <ScrollTop />
             <Footer />
         </>
