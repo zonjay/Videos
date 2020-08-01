@@ -47,6 +47,8 @@ nav {
       position: absolute;
       list-style-type: none;
       background-color: $color_grey;
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.05), 0 2px 20px rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid #444;
       color: black;
       max-height: 400px;
       right: 3%;
