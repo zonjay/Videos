@@ -8,14 +8,14 @@ export default function Bookmarks ({ videos, onBookButtonClick }) {
         <span className="name">我的收藏</span>
         <ul className="lists">
             {
-            videos.map((video, index) => {
+            videos.map((video) => {
             return video.snippet.checked && (<li key={video.contentDetails.videoId} className="bookmark">
                 <a href={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`} target="_blank">
                     <div className="thumbnail">
                         <img src={`${video.snippet.thumbnails.medium.url}`} />
                     </div>
                     <h4>{video.snippet.title}</h4>
-                    <span onClick={(event) => onBookButtonClick(event, index)}><FontAwesomeIcon icon={ faTrash } /></span>
+                    <span onClick={(event) => onBookButtonClick(event, video.snippet.resourceId.videoId)}><FontAwesomeIcon icon={ faTrash } /></span>
                 </a>
             </li>)})
             }
