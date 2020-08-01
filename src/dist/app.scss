@@ -207,11 +207,13 @@ nav {
       }
     }
 
+    @media (hover: hover) {
       &:hover {
         & .cover {
           transform: scale(1.15);
         }
       }
+    }
 
     & .description {
       display: flex;
