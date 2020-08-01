@@ -10,78 +10,78 @@ import ScrollTop from './ScrollTop';
 import SnackBar from './SnackBar';
 import { BASEURL, APIKEY } from '../constant';
 
-export default function App () {
-    const channelID = 'UC8tyyA-UIbefEexcLatHmUQ';
+export default function App() {
+  const channelID = 'UC8tyyA-UIbefEexcLatHmUQ';
 
-    const [videos, setVideos] = useState([]);
-    const [snackbarText, setSnackbarText] = useState('');
+  const [videos, setVideos] = useState([]);
+  const [snackbarText, setSnackbarText] = useState('');
 
-    useEffect(() => {
-        getVideoData().then((data) => setVideos(data));
-    }, [channelID])
+  const getVideoData = async () => {
+    /* 取得頻道資料 */
+    const channelData = await axios.get(`${BASEURL}/channels`, {
+      params: {
+        part: 'contentDetails',
+        id: channelID,
+        key: APIKEY,
+      },
+    });
 
-    const getVideoData = async () => {
-        /* 取得頻道資料 */
-        const channelData = await axios.get(`${BASEURL}/channels`, {
-            params: {
-                part: 'contentDetails',
-                id: channelID,
-                key: APIKEY
-            }
-        });
+    const [items] = channelData.data.items;
+    const playlistID = items.contentDetails.relatedPlaylists.uploads;
 
-        const [ items ] = channelData.data.items;
-        const playlistID = items.contentDetails.relatedPlaylists.uploads;
+    /* 取得上傳的播放清單資料 */
+    const playListData = await axios.get(`${BASEURL}/playlistItems`, {
+      params: {
+        part: 'snippet,contentDetails',
+        playlistId: playlistID,
+        key: APIKEY,
+        maxResults: 20,
+      },
+    });
 
-        /* 取得上傳的播放清單資料 */
-        const playListData = await axios.get(`${BASEURL}/playlistItems`, {
-            params: {
-                part: 'snippet,contentDetails',
-                playlistId: playlistID,
-                key: APIKEY,
-                maxResults: 20
-            }
-        });
+    return playListData.data.items;
+  };
 
-        return playListData.data.items;
-    }
+  useEffect(() => {
+    getVideoData().then((data) => setVideos(data));
+  }, [channelID]);
 
-    const handleBookClick = (event, id) => {
-        event.preventDefault();
-        setVideos(videos.map((video) => {
-            if (id === video.snippet.resourceId.videoId) {
-                video.snippet.checked = !video.snippet.checked;
-                setSnackbarText(video.snippet.checked ? `加入收藏： ${video.snippet.title}` : `取消收藏： ${video.snippet.title}`);
-            };
+  const snackBarEvent = () => {
+    const snackbar = document.getElementById('snackbar');
+    snackbar.className = 'show';
+    setTimeout(() => {
+      snackbar.className = snackbar.className.replace('show', '');
+    }, 3000);
+  };
 
-            return video;
-        }))
+  const handleBookClick = (event, id) => {
+    event.preventDefault();
+    setVideos(videos.map((video) => {
+      if (id === video.snippet.resourceId.videoId) {
+        video.snippet.checked = !video.snippet.checked;
+        setSnackbarText(video.snippet.checked ? `加入收藏： ${video.snippet.title}` : `取消收藏： ${video.snippet.title}`);
+      }
 
-        snackBarEvent();
-    }
+      return video;
+    }));
 
-    const snackBarEvent = () => {
-        let snackbar = document.getElementById('snackbar');
-        snackbar.className = 'show';
-        setTimeout(function() {
-          snackbar.className = snackbar.className.replace('show', '');
-        }, 3000);
-    }
+    snackBarEvent();
+  };
 
-    return (
-        <>
-            <Header
-                videos={videos}
-                onBookButtonClick={(event, id) => handleBookClick(event, id)}
-            />
-            <KV />
-            <VideoList
-                videos={videos}
-                onBookButtonClick={(event, id) => handleBookClick(event, id)}
-            />
-            <ScrollTop />
-            <Footer />
-            <SnackBar text={snackbarText}/>
-        </>
-    )
+  return (
+    <>
+      <Header
+        videos={videos}
+        onBookButtonClick={(event, id) => handleBookClick(event, id)}
+      />
+      <KV />
+      <VideoList
+        videos={videos}
+        onBookButtonClick={(event, id) => handleBookClick(event, id)}
+      />
+      <ScrollTop />
+      <Footer />
+      <SnackBar text={snackbarText} />
+    </>
+  );
 }
