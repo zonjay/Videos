@@ -19,6 +19,7 @@ $color_dark_grey: #4F4C4B;
 body, html {
   background-color: $color_grey;
   overflow-x: hidden;
+  font-size: 100%;
 }
 
 nav {
@@ -133,7 +134,7 @@ nav {
     color: white;
     bottom: 8%;
     text-align: center;
-    font-size: 40px;
+    font-size: 2.5em;
     animation: bounce 1.5s infinite;
   }
 
@@ -247,7 +248,7 @@ footer {
     text-align: center;
 
     .brand {
-      font-size: 20px;
+      font-size: 1.3em;
       font-weight: 700;
       letter-spacing: 2px;
       color: white;
@@ -278,7 +279,7 @@ footer {
 }
 
 .scroll-top-btn:after {
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 900;
   letter-spacing: 2px;
   display: inline-block;
