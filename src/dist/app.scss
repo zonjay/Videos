@@ -297,3 +297,52 @@ footer {
   content: "TOP";
   color: #fff;
 }
+
+#snackbar {
+  visibility: hidden;
+  width: 80vw;
+  min-width: 80vw;
+  background-color: rgba(18, 18 , 18, 0.9);
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 1em;
+  font-weight: 700;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &.show {
+    visibility: visible;
+    /*依序是名稱 duration, delay*/
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+
+  @keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+}

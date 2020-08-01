@@ -7,12 +7,14 @@ import KV from './Kv';
 import VideoList from './VideoList';
 import Footer from './Footer';
 import ScrollTop from './ScrollTop';
+import SnackBar from './SnackBar';
 import { BASEURL, APIKEY } from '../constant';
 
 export default function App () {
     const channelID = 'UC8tyyA-UIbefEexcLatHmUQ';
 
     const [videos, setVideos] = useState([]);
+    const [snackbarText, setSnackbarText] = useState('');
 
     useEffect(() => {
         getVideoData().then((data) => setVideos(data));
@@ -49,10 +51,21 @@ export default function App () {
         setVideos(videos.map((video) => {
             if (id === video.snippet.resourceId.videoId) {
                 video.snippet.checked = !video.snippet.checked;
+                setSnackbarText(video.snippet.checked ? `加入收藏： ${video.snippet.title}` : `取消收藏： ${video.snippet.title}`);
             };
 
             return video;
         }))
+
+        snackBarEvent();
+    }
+
+    const snackBarEvent = () => {
+        let snackbar = document.getElementById('snackbar');
+        snackbar.className = 'show';
+        setTimeout(function() {
+          snackbar.className = snackbar.className.replace('show', '');
+        }, 3000);
     }
 
     return (
@@ -68,6 +81,7 @@ export default function App () {
             />
             <ScrollTop />
             <Footer />
+            <SnackBar text={snackbarText}/>
         </>
     )
 }
