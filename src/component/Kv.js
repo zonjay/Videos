@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-export default function Kv () {
+export default React.memo(function Kv () {
     useEffect(() => {
         const playYoutube = () => {
             if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
@@ -57,4 +57,4 @@ export default function Kv () {
             </div>
         </div>
     );
-}
+});

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-export default function Footer () {
+export default React.memo(function Footer () {
     return (
         <footer>
             <a className="brand" target="_blank" href="https://github.com/zonjay">
@@ -11,4 +11,4 @@ export default function Footer () {
             </a>
         </footer>
     )
-}
+});
