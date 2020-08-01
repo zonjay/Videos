@@ -22,6 +22,8 @@ body, html {
 }
 
 nav {
+  display: flex;
+  justify-content: space-between;
   background-color:rgb(18, 18 , 18);
   position: fixed;
   @include size(100vw, auto);
@@ -30,6 +32,80 @@ nav {
   color: white;
   font-weight: 700;
   z-index: 2;
+
+  #my-bookmarks {
+    .name {
+      padding: 20px 24px;
+      cursor: pointer;
+      &:hover {
+        color: darken($color: $color_grey, $amount: 15%);
+      }
+    }
+
+    .lists {
+      display: block;
+      position: absolute;
+      list-style-type: none;
+      background-color: $color_grey;
+      color: black;
+      max-height: 400px;
+      right: 3%;
+      margin-top: 15px;
+      overflow: auto;
+
+      .bookmark {
+        padding: 10px;
+        border-top: 2px solid #e5e5e5;
+        a {
+          display: flex;
+          cursor: pointer;
+          text-decoration: none;
+          color: $color_dark_grey;
+
+          .thumbnail {
+            max-width: 200px;
+            img {
+              @include size(100%, 100%);
+            }
+          }
+
+          h4 {
+            max-width: 220px;
+            margin: auto 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          span {
+            margin: auto 10px;
+          }
+        }
+
+        &:hover {
+          background-color: darken($color: $color_grey, $amount: 15%);
+        }
+      }
+
+    }
+
+    &:hover {
+      .lists {
+        display: block;
+      }
+    }
+
+
+    @media screen and (max-width: 420px) {
+      .name {
+        padding: 20px 0;
+      }
+
+      .lists {
+        right: 0;
+        width: 100vw;
+      }
+     }
+  }
 }
 
 #kv {

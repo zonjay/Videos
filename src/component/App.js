@@ -57,7 +57,9 @@ export default function App () {
 
     return (
         <>
-            <Header />
+            <Header
+                videos={videos}
+            />
             <KV />
             <VideoList
                 videos={videos}
