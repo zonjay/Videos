@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-export default function Bookmarks ({ videos }) {
+export default function Bookmarks ({ videos, onBookButtonClick }) {
     return (
         <div id="my-bookmarks">
         <span className="name">我的收藏</span>
@@ -13,6 +15,7 @@ export default function Bookmarks ({ videos }) {
                         <img src={`${video.snippet.thumbnails.medium.url}`} />
                     </div>
                     <h4>{video.snippet.title}</h4>
+                    <span onClick={(event) => onBookButtonClick(event, index)}><FontAwesomeIcon icon={ faTrash } /></span>
                 </a>
             </li>)})
             }

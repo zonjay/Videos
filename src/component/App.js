@@ -59,6 +59,7 @@ export default function App () {
         <>
             <Header
                 videos={videos}
+                onBookButtonClick={(event, i) => handleBookClick(event, i)}
             />
             <KV />
             <VideoList
