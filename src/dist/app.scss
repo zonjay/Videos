@@ -197,12 +197,19 @@ nav {
         text-align: center;
         z-index: 1;
         padding: 5px;
-        font-size: 12px;
+        font-size: 0.8em;
         font-weight: 600;
 
         &:hover {
           background-color: rgba(18, 18 , 18, 1);
         }
+
+        @media screen and (max-width: 420px) {
+          & {
+            font-size: 0.95em;
+          }
+        }
+
       }
 
       & .cover {
