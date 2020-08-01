@@ -193,7 +193,6 @@ nav {
         padding: 5px;
         font-size: 12px;
         font-weight: 600;
-        opacity: 0;
 
         &:hover {
           background-color: rgba(18, 18 , 18, 1);
@@ -207,16 +206,12 @@ nav {
         transition-duration: 0.3s
       }
     }
-    
-    &:hover {
-      & .cover {
-        transform: scale(1.15);
+
+      &:hover {
+        & .cover {
+          transform: scale(1.15);
+        }
       }
-      & .bookmark {
-        opacity: 1;
-        transition-duration: 0.5s
-      }
-    }
 
     & .description {
       display: flex;
